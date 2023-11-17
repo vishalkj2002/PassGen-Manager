@@ -1,0 +1,33 @@
+/* Style for larger screens */
+@media (min-width: 992px) {
+    .navbar .nav-item {
+        float: left;
+        margin-right: 1em;
+    }
+}
+
+/* Style for medium screens */
+@media (min-width: 768px) and (max-width: 991px) {
+    .navbar .nav-item {
+        float: none;
+        margin-bottom: 1em;
+    }
+}
+
+/* Style for small screens */
+@media (max-width: 767px) {
+    .navbar .nav-item {
+        float: none;
+        margin-bottom: 1em;
+    }
+}
+
+.h1 {
+    text-align: center;
+}
+
+.container {
+    background-color: papayawhip;
+    width: 500px;
+    padding: 20px;
+}
