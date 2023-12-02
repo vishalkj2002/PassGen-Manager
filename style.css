@@ -1,33 +1,99 @@
-/* Style for larger screens */
-@media (min-width: 992px) {
-    .navbar .nav-item {
-        float: left;
-        margin-right: 1em;
-    }
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif, Arial;
+    margin: 0;
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-/* Style for medium screens */
-@media (min-width: 768px) and (max-width: 991px) {
-    .navbar .nav-item {
-        float: none;
-        margin-bottom: 1em;
-    }
-}
+.navbar {
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+    padding-left: 135px;
+    padding-right: 135px;
+  }
+  /* Add some spacing between nav items for responsiveness */
+  .navbar-nav {
+    margin-left: auto;
+  }
 
-/* Style for small screens */
-@media (max-width: 767px) {
-    .navbar .nav-item {
-        float: none;
-        margin-bottom: 1em;
-    }
-}
-
-.h1 {
+  .navbar-nav .nav-item {
+    margin-right: 10px;
+  }
+h1 {
     text-align: center;
+    padding-top: 80px;
+    color: #333;
 }
 
-.container {
-    background-color: papayawhip;
-    width: 500px;
+#password {
+    margin-top: 20px;
     padding: 20px;
+    font-size: 18px;
+    text-align: center;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+label {
+    display: block;
+    margin-top: 10px;
+    color: #555;
+}
+
+#password-options {
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-around;
+}
+
+button, input[type="range"] {
+    display: block;
+    margin: 10px auto;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: #217dbb;
+}
+
+#password-list {
+    margin-top: 20px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    padding: 20px;
+}
+
+#passwords {
+    list-style: none;
+    padding: 0;
+}
+
+#passwords li {
+    margin: 5px 0;
+    padding: 8px;
+    background-color: #ecf0f1;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+@media (min-width: 600px) {
+    #password-options {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    label {
+        width: 30%;
+    }
 }
