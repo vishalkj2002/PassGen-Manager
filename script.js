@@ -17,10 +17,16 @@ document.getElementById('generatebtn').addEventListener('click', function(){
     document.getElementById('alertMessage').innerHTML = ""
 
     document.getElementById('generateout').value=password;
+    document.getElementById('copy').innerHTML="Copy"
 
 })
 
-   
+setTimeout(function() {
+  var contentLoadedDiv = document.querySelector('.content-loaded');
+  contentLoadedDiv.style.opacity = '1';
+  var loadingSkeleton = document.querySelector('.loading-skeleton');
+  loadingSkeleton.style.display = 'none';
+}, 3000); 
     
 
     function copyToClipboard(){
@@ -29,10 +35,17 @@ document.getElementById('generatebtn').addEventListener('click', function(){
        copyText.setSelectionRange(0, 99999)
        navigator.clipboard.writeText(copyText.value)
 
-
-       
+       showTick();
 
     }
+
+
+    function showTick(){
+      let copyButton=document.getElementById('copy');
+      copyButton.innerHTML='Copied <span class="tick-Icon">✅</span>'
+      
+    }
+    
   function generatepassword(passwordLength, includeAlphabets,includeCharacters,includeNumbers){
     var charset = "";
     if(includeAlphabets){
