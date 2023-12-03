@@ -1,50 +1,72 @@
-function generatePassword() {
-    const length = document.getElementById('length').value;
-    const includeNumbers = document.getElementById('includeNumbers').checked;
-    const includeSpecial = document.getElementById('includeSpecial').checked;
-    const includeAlphabets = document.getElementById('includeAlphabets').checked;
+document.getElementById('generatebtn').addEventListener('click', function(){
+    var passwordLength=document.getElementById('myRange').value;
+    var includeCharacters=document.getElementById('characters').checked
+    var includeNumbers=document.getElementById('numbers').checked
+    var includeAlphabets=document.getElementById('alphabets').checked
+    
+    var password= generatepassword(passwordLength, includeAlphabets,includeCharacters,includeNumbers);
 
-    let charset = '';
-    if (includeNumbers) charset += '0123456789';
-    if (includeSpecial) charset += '!@#$%^&*()-_=+';
-    if (includeAlphabets) charset += 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    var alertMessageElement = document.getElementById('alertMessage');
 
-    let password = '';
-    for (let i = 0; i < length; i++) {
-        const randomIndex = Math.floor(Math.random() * charset.length);
-        password += charset[randomIndex];
+    if(password===""){
+        alertMessageElement.innerHTML='Please Select atleast one option'
+        document.getElementById('generateout').value=""
+        return;
+    }
+    
+    document.getElementById('alertMessage').innerHTML = ""
+
+    document.getElementById('generateout').value=password;
+    document.getElementById('copy').innerHTML="Copy"
+
+})
+
+setTimeout(function() {
+  let contentLoadedDiv = document.querySelector('.content-loaded');
+  contentLoadedDiv.style.opacity = '1';
+  let loadingSkeleton = document.querySelector('.loading-skeleton');
+  loadingSkeleton.style.display = 'none';
+}, 3000); 
+    
+
+    function copyToClipboard(){
+       var copyText=document.getElementById('generateout')
+      //  copyText.select();
+      //  copyText.setSelectionRange(0, 99999)
+       navigator.clipboard.writeText(copyText.value)
+
+       showTick();
+
     }
 
-    document.getElementById('generated-password').innerText = 'Generated Password: ' + password;
 
-    // Add the generated password to the password manager
-    const passwordsList = document.getElementById('passwords');
-    const li = document.createElement('li');
-    li.appendChild(document.createTextNode(password));
-    passwordsList.appendChild(li);
-}
+    function showTick(){
+      let copyButton=document.getElementById('copy');
+      copyButton.innerHTML='Copied <span class="tick-Icon">✅</span>'
+      
+    }
+    
+  function generatepassword(passwordLength, includeAlphabets,includeCharacters,includeNumbers){
+    var charset = "";
+    if(includeAlphabets){
+        charset+="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    }
+    if (includeNumbers) {
+        charset += "0123456789";
+      }
+      if (includeCharacters) {
+        charset += "!@#$%^&*()_+";
+      }
 
-function copyPassword() {
-    const generatedPassword = document.getElementById('generated-password');
-    const textArea = document.createElement('textarea');
-    textArea.value = generatedPassword.innerText.replace('Generated Password: ', '');
-    document.body.appendChild(textArea);
-    textArea.select();
-    document.execCommand('copy');
-    document.body.removeChild(textArea);
-    alert('Password copied to clipboard!');
-}
+      if(charset===""){
+        return ""
+      }
+    var password=""
+    for(var i=0;i<passwordLength;i++){
+        var randomIndex= Math.floor(Math.random() * charset.length)
+        password += charset.charAt(randomIndex)
+    }
+    return password;
 
-// Update the displayed length value as the slider is moved
-const lengthSlider = document.getElementById('length');
-const lengthDisplay = document.getElementById('length-display');
-lengthDisplay.textContent = 'Length: ' + lengthSlider.value;
 
-lengthSlider.addEventListener('input', function () {
-    lengthDisplay.textContent = 'Length: ' + lengthSlider.value;
-});
-function clearPasswords() {
-    const passwordsList = document.getElementById('passwords');
-    passwordsList.innerHTML = ''; // Clearing all passwords
-}
-
+  }
