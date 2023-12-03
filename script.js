@@ -10,6 +10,7 @@ document.getElementById('generatebtn').addEventListener('click', function(){
 
     if(password===""){
         alertMessageElement.innerHTML='Please Select atleast one option'
+        document.getElementById('generateout').value=""
         return;
     }
     

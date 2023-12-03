@@ -27,11 +27,19 @@
 }
 
 .container {
-    background-color: papayawhip;
-    /* width: 500px;
-    padding: 20px; */
+    /* background-color: papayawhip; */
+    background: linear-gradient(to bottom, #0099cc 0%, #99ffcc 100%);
+    width: 500px;
+    padding: 20px;
     display: flex;
     flex-direction: column;
 }
+
+.content{
+    background: linear-gradient(to bottom, #33ccff 0%, #ff99cc 100%);
+    height: 100vh;
+}
+
+
 
 
