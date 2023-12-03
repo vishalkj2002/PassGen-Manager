@@ -22,9 +22,9 @@ document.getElementById('generatebtn').addEventListener('click', function(){
 })
 
 setTimeout(function() {
-  var contentLoadedDiv = document.querySelector('.content-loaded');
+  let contentLoadedDiv = document.querySelector('.content-loaded');
   contentLoadedDiv.style.opacity = '1';
-  var loadingSkeleton = document.querySelector('.loading-skeleton');
+  let loadingSkeleton = document.querySelector('.loading-skeleton');
   loadingSkeleton.style.display = 'none';
 }, 3000); 
     
