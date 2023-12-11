@@ -28,7 +28,7 @@
 
 .container {
  
-    background: linear-gradient(to bottom, #0099cc 0%, #99ffcc 100%);
+    background-image: linear-gradient( 58.2deg,  rgba(40,91,212,0.73) -3%, rgba(171,53,163,0.45) 49.3%, rgba(255,204,112,0.37) 97.7% );
     padding: 20px; 
     border-radius: 20px;
     display: flex;
@@ -36,8 +36,7 @@
 }
 
 .content{
-    background: linear-gradient(to bottom, #33ccff 0%, #ff99cc 100%);
-    height: 100vh;
+    background-image: linear-gradient( 58.2deg,  rgba(40,91,212,0.73) -3%, rgba(171,53,163,0.45) 49.3%, rgba(255,204,112,0.37) 97.7% );    height: 100vh;
 }
 .tick-Icon{
     margin-left: 5px;
