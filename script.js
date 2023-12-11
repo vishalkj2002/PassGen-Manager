@@ -7,26 +7,29 @@ document.getElementById('generatebtn').addEventListener('click', function(){
     var password= generatepassword(passwordLength, includeAlphabets,includeCharacters,includeNumbers);
 
     var alertMessageElement = document.getElementById('alertMessage');
+    alertMessageElement.innerHTML = ""
 
     if(password===""){
+      document.getElementById('generateout').value=""
         alertMessageElement.innerHTML='Please Select atleast one option'
-        document.getElementById('generateout').value=""
+        setTimeout(() => {
+          document.getElementById('alertMessage').innerHTML=""
+        }, 2000);
         return;
     }
-    
-    document.getElementById('alertMessage').innerHTML = ""
-
     document.getElementById('generateout').value=password;
     document.getElementById('copy').innerHTML="Copy"
 
 })
+
+
 
 setTimeout(function() {
   let contentLoadedDiv = document.querySelector('.content-loaded');
   contentLoadedDiv.style.opacity = '1';
   let loadingSkeleton = document.querySelector('.loading-skeleton');
   loadingSkeleton.style.display = 'none';
-}, 3000); 
+}, 2000); 
     
 
     function copyToClipboard(){
@@ -36,7 +39,10 @@ setTimeout(function() {
        navigator.clipboard.writeText(copyText.value)
 
        showTick();
-
+       setTimeout(function(){
+        let copyButton=document.getElementById('copy')
+        copyButton.innerHTML="Copy"
+       }, 2000)
     }
 
 
