@@ -22,6 +22,9 @@
     }
 } */
 
+*{
+    font-family: "Space Mono", monospace;
+}
 .h1 {
     text-align: center;
 }
