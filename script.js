@@ -19,8 +19,10 @@ document.getElementById('generatebtn').addEventListener('click', function(){
     }
     document.getElementById('generateout').value=password;
     document.getElementById('copy').innerHTML="Copy"
+    passwordStrengthMeter();
 
 })
+
 
 
 
@@ -72,7 +74,36 @@ setTimeout(function() {
         var randomIndex= Math.floor(Math.random() * charset.length)
         password += charset.charAt(randomIndex)
     }
+    
     return password;
+  }
+  
 
+  function passwordStrengthMeter(){
 
+    let generateOut= document.getElementById('generateout')
+    let strength=document.getElementById('password_strength_meter')
+    let slider=document.getElementById('myRange')
+    let password=generateOut.value
+    let result= zxcvbn(password)
+    // slider.value=result.score;
+    strength.innerHTML=`Strength: ${getStrengthLabel(result.score)}`
+  }
+
+  function getStrengthLabel(score){
+    switch(score)
+    {
+      case 0:
+        return 'Very Weak';
+      case 1:
+        return 'Weak'
+      case 2:
+        return 'Moderate'
+      case 3:
+        return 'Strong'
+      case 4:
+        return 'Very Strong'
+      default:
+        return 'Unknown'
+    }
   }
