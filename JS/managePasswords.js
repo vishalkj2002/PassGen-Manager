@@ -41,7 +41,7 @@ const showpasswords = () => {
         <td>${element.website}</td>
         <td>${element.username}</td>
         <td>${element.password}</td>
-        <td>${"Delete"}</td>
+        <td>${"Edit/Delete"}</td>
         </tr>`
         }
 
@@ -53,9 +53,28 @@ showpasswords()
 
 
 
+
 document.querySelector('#submitbtn').addEventListener('click', (a) => {
     a.preventDefault()
-    console.log(input1.value, input2.value, input3.value)
+    // console.log(input1.value, input2.value, input3.value)
+    const input1 = document.getElementById('input1')
+    const input2 = document.getElementById('input2')
+    const input3 = document.getElementById('input3')
+
+    //Empty field message
+    let emptyField = document.getElementById('alertEmptyInput')
+
+    //check if field are empty
+    if (!input1.value || !input2.value || !input3.value) {
+        //set the alert message
+        emptyField.innerHTML = 'Please fill in all the inputs before submission.'
+        return;
+    }
+
+    //clear the message
+    emptyField.innerHTML = ''
+
+
     let passwords = localStorage.getItem("passwords")
     console.log(passwords)
     if (passwords == null) {
@@ -68,6 +87,11 @@ document.querySelector('#submitbtn').addEventListener('click', (a) => {
         json.push({ website: input1.value, username: input2.value, password: input3.value })
         localStorage.setItem("passwords", JSON.stringify(json))
     }
+
+    //clear input fields after submission
+    input1.value = ''
+    input2.value = ''
+    input3.value = ''
     showpasswords();
 })
 

@@ -70,7 +70,7 @@
 .loading-skeleton .loader{
     width: 100px;
     height: 100px;
-    background: url(./public/Hourglass.gif) center center no-repeat;
+    background: url(../public/Hourglass.gif) center center no-repeat;
     background-size: cover;
 }
 
