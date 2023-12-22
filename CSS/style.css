@@ -22,35 +22,38 @@
     }
 } */
 
-*{
+* {
     font-family: "Space Mono", monospace;
 }
+
 .h1 {
     text-align: center;
+    padding-top: 20px;
 }
 
-.navbar{
+.navbar {
     font-size: large;
 } 
 
 .container {
- 
-    background-image: linear-gradient( 58.2deg,  rgba(40,91,212,0.73) -3%, rgba(171,53,163,0.45) 49.3%, rgba(255,204,112,0.37) 97.7% );
-    padding: 20px; 
+    /* background-image: linear-gradient(58.2deg,  rgba(40,91,212,0.73) -3%, rgba(171,53,163,0.45) 49.3%, rgba(255,204,112,0.37) 97.7%); */
+    padding: 0 20px 20px 20px; 
     font-size: large;
     border-radius: 20px;
     display: flex;
     flex-direction: column;
 }
 
-.content{
-    background-image: linear-gradient( 58.2deg,  rgba(40,91,212,0.73) -3%, rgba(171,53,163,0.45) 49.3%, rgba(255,204,112,0.37) 97.7% );    height: 100vh;
+.content {
+    background-image: linear-gradient(58.2deg,  rgba(40,91,212,0.73) -3%, rgba(171,53,163,0.45) 49.3%, rgba(255,204,112,0.37) 97.7%);
+    height: 100vh;
 }
-.tick-Icon{
+
+.tick-Icon {
     margin-left: 5px;
 }
 
-.loading-skeleton{
+.loading-skeleton {
     width: 100%;
     height: 100vh;
     display: flex;
@@ -62,23 +65,15 @@
     left: 0;
     background-color: #91d8cf;
     z-index: 1000;
-
-    
 }
 
-
-.loading-skeleton .loader{
+.loading-skeleton .loader {
     width: 100px;
     height: 100px;
     background: url(../public/Hourglass.gif) center center no-repeat;
     background-size: cover;
 }
 
-.content-loaded .loading-skeleton{
+.content-loaded .loading-skeleton {
     display: none;
 }
-
-
-
-
-
