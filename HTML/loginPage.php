@@ -1,3 +1,31 @@
+<?php
+$login=0;
+$invalid=0;
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+  // header('location: managePasswords.php');
+  include 'message.php';
+  $email = $_POST['email'];
+  $password = $_POST['psw'];
+
+
+
+  $sql = "select * from `registration` where email='$email' and password ='$password'";
+  $result = mysqli_query($cons, $sql);
+  if ($result) {
+    $num = mysqli_num_rows($result);
+    if ($num > 0) {
+      // echo "<h1>login successfull</h1>";
+      session_start();
+      $_SESSION['email']=$email;
+      header('location: home.php');
+  
+    } else {
+      $invalid=1;
+      echo '<script>alert("Invalid Credentials");</script>';
+    }
+  }
+}
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -112,15 +140,15 @@
   
   <div id="id01" class="modal">
     
-    <form class="modal-content" action="/action_page.php" method="post">
+    <form class="modal-content" action="loginPage.php" method="post">
       <div class="imgcontainer">
         <h2>Login Form</h2>
         <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
       </div>
 
       <div class="container">
-        <label for="uname"><b>Username</b></label>
-        <input type="text" placeholder="Enter Username" name="uname" required>
+        <label for="uname"><b>Email</b></label>
+        <input type="text" placeholder="Enter Username" name="email" required>
 
         <label for="psw"><b>Password</b></label>
         <input type="password" placeholder="Enter Password" name="psw" required>
@@ -132,8 +160,8 @@
       </div>
 
       <div class="container" style="background-color:#f1f1f1">
-        <a href="../index.html"><button type="button"  class="cancelbtn">Cancel</button></a>
-        <span class="psw">Forgot <a href="#">password?</a></span>
+        <a href="../index.php"><button type="button"  class="cancelbtn">Cancel</button></a>
+        <span class="psw"> <a href="#">Forgot password?</a></span>
       </div>
     </form>
   </div>
@@ -146,12 +174,12 @@
     window.onclick = function(event) {
       if (event.target == modal) {
         modal.style.display = "none";
-        window.location.href = "../index.html";
+        window.location.href = "../index.php";
       }
     }
     document.querySelector('.close').onclick = function() {
       modal.style.display = "none";
-      window.location.href = '../index.html'; // Redirect to the home page
+      window.location.href = '../index.php'; // Redirect to the home page
     }
   </script>
 
