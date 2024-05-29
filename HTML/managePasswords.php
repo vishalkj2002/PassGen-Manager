@@ -41,7 +41,7 @@
             </div>
           </li>
           <li class="nav-item">
-            <button class="btn btn-primary p-0 "><a class="nav-link text-light" href="./HTML/loginPage.php">Logout</a></button>
+            <button class="btn btn-primary p-0 "><a class="nav-link text-light"  onclick="logout()">Logout</a></button>
           </li>
         </ul>
       </div>
@@ -73,6 +73,11 @@
     </div>
 
    <script src="../JS/managePasswords.js"></script>
+   <script>function logout(){
+      window.location.href = '../index.php';
+      alert("Logout successful!");
+      
+    }</script>
 </body>
 </html>
 
