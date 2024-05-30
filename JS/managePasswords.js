@@ -30,7 +30,7 @@ const showpasswords = () => {
         <th>Website</th>
         <th>Username</th>
         <th>Password</th>
-        <th>Edit/Delete</th>
+        <th>Operation</th>
     </tr>`
         let arr = JSON.parse(data)
         let str = ""

@@ -1,15 +1,26 @@
 <?php
 	include 'message.php';
-	if(isset($_POST['submit'])) {
+    $id = $_GET['updateid'];
+
+    $sql = "select * from `passwords` where id = $id";
+    $result = mysqli_query($cons, $sql);
+    $row = mysqli_fetch_assoc($result);
+    $id = $row['id'];
+	$website = $row['website'];
+	$username = $row['username'];
+	$password = $row['password'];
+
+
+    if(isset($_POST['submit'])) {
 		$website = $_POST['website'];
 		$username = $_POST['username'];
 		$password = $_POST['password'];
 
-		$sql = "insert into `passwords` (website, username, password) values ('$website', '$username', '$password')";
+		$sql="update `passwords` set id = '$id', website = '$website', username = '$username', password = '$password' where id = $id";
 		$result = mysqli_query($cons, $sql);
 		if($result) {
-			echo "<script>alert('Password saved')</script>";
-			header("Location: " . $_SERVER['PHP_SELF']);
+			echo "<script>alert('Password Updated')</script>";
+            header("Location: ./managePasswords.php");
 		} else {
 			die(mysqli_error($cons));
 		}
@@ -107,13 +118,13 @@
 	<h2>Add a Password</h2>
 	<form method="post">
 		<label for="website" >Website: </label>
-		<input type="text" id="input1" placeholder="Enter Website" name="website" required><br><br>
+		<input type="text" id="input1" placeholder="Enter Website" name="website" required value="<?php echo $website;?>" ><br><br>
 		<label for="username" >Username: </label>
-		<input type="text" id="input2" placeholder="Enter Username" name="username" required><br><br>
+		<input type="text" id="input2" placeholder="Enter Username" name="username" required value="<?php echo $username;?>" ><br><br>
 		<label for="password" >Password: </label>
-		<input type="password" id="input3" placeholder="Enter Password" name="password" required><br>
+		<input type="password" id="input3" placeholder="Enter Password" name="password" required value="<?php echo $password;?>" ><br>
 		<div id="alertEmptyInput"></div><br>
-		<button type="submit" id="submitbtn" name="submit">Submit</button>
+		<button type="submit" id="submitbtn" name="submit">Update</button>
 	</form>
 	</div>
 

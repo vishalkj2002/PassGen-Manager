@@ -9,7 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 
 
-  $sql = "select * from `registration` where email='$email'";
+  $sql = "select * from `registration1` where email='$email'";
   $result = mysqli_query($cons, $sql);
   if ($result) {
     $num = mysqli_num_rows($result);
@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       $user = 1;
       echo '<script> alert("User already exist");</script>';
     } else {
-      $sql = "insert into `registration` (email,password) values ('$email','$password')";
+      $sql = "insert into `registration1` (email,password) values ('$email','$password')";
       $result = mysqli_query($cons, $sql);
       if ($result) {
         $success = 1;

@@ -1,7 +1,27 @@
 <?php
-session_start();
-session_destroy();
-// header('location: index.php');
+$login = 0;
+$invalid = 0;
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+  include 'message.php';
+  $email = $_POST['email'];
+  $password = $_POST['psw'];
+
+  $sql = "SELECT id, email FROM `registration1` WHERE email='$email' AND password='$password'";
+  $result = mysqli_query($cons, $sql);
+  if ($result) {
+    $num = mysqli_num_rows($result);
+    if ($num > 0) {
+      session_start();
+      $row = mysqli_fetch_assoc($result);
+      $_SESSION['user_id'] = $row['id'];
+      $_SESSION['email'] = $row['email'];
+      header('location: home.php');
+    } else {
+      $invalid = 1;
+      echo '<script>alert("Invalid Credentials");</script>';
+    }
+  }
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -31,11 +51,11 @@ session_destroy();
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="./CSS/style.css">
 </head>
-<body> 
+<body>
 
   <!-- <div class="loading-skeleton">
     <div class="loader"> -->
-    
+
     </div>
   </div>
   <div class="content-loaded">
@@ -60,7 +80,7 @@ session_destroy();
           <li class="nav-item">
             <a class="nav-link" href="./HTML/loginPage.php" >Manage Passwords</a>
           </li>
-          
+
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">More Options
             </a>
@@ -113,11 +133,11 @@ session_destroy();
         <div class="row d-flex justify-content-center"> <!-- Center the "Generate Password" button -->
           <button type="button" name="generate" id="generatebtn" class="btn btn-primary">Generate Password</button>
         </div>
-    </div>  
-  </div>   
+    </div>
+  </div>
 </div>
-    <script src="./JS/script.js"></script>   
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/zxcvbn/4.4.2/zxcvbn.js"></script>    
+    <script src="./JS/script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/zxcvbn/4.4.2/zxcvbn.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>

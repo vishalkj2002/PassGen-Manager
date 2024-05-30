@@ -9,7 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 
 
-  $sql = "select * from `registration` where email='$email' and password ='$password'";
+  $sql = "select * from `registration1` where email='$email' and password ='$password'";
   $result = mysqli_query($cons, $sql);
   if ($result) {
     $num = mysqli_num_rows($result);
@@ -18,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       session_start();
       $_SESSION['email']=$email;
       header('location: home.php');
-  
+
     } else {
       $invalid=1;
       echo '<script>alert("Invalid Credentials");</script>';
@@ -137,9 +137,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 </head>
 <body>
 
-  
+
   <div id="id01" class="modal">
-    
+
     <form class="modal-content" action="loginPage.php" method="post">
       <div class="imgcontainer">
         <h2>Login Form</h2>
